@@ -1,5 +1,9 @@
-# Import CSV library to read and write CSV
+# Import CSV and OS library to read and write CSV
 import csv
+import os
+
+# Get the filename to read data from: path where the program resides
+filename = os.path.join(os.path.dirname(__file__), 'budget_data.csv')
 
 # Variable to hold value
 total_rows = 0
@@ -12,7 +16,7 @@ greatest_decrease_amount_value = 0
 greatest_decrease_amount_date = ""
 
 # Open the budget_data.csv file using csv.DictReader
-with open('budget_data.csv', 'r') as csvfile:
+with open(filename, 'r') as csvfile:
 
     budget_reader = csv.reader(csvfile, delimiter=',')
 
@@ -77,8 +81,11 @@ greatest_decrease_amount_msg = 'Greatest Decrease in Profits: '\
                                + str(greatest_decrease_amount_date)\
                                + ' ($ ' + str(greatest_decrease_amount_value) + ')'
 
+# Get the filename to write
+filename = os.path.join(os.path.dirname(__file__), 'budget_summary.txt')
+
 # Write the summary to the text file
-with open('budget_summary.txt', 'w') as textfile:
+with open(filename, 'w') as textfile:
 
     budget_summary_writer = csv.writer(textfile)
 

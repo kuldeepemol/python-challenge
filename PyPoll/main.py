@@ -1,12 +1,16 @@
-# Import CSV library to read and write CSV
+# Import CSV and OS library to read and write CSV
 import csv
+import os
+
+# Get the filename to read data from: path where the program resides
+filename = os.path.join(os.path.dirname(__file__), 'election_data.csv')
 
 # Variable to hold value
 total_vote = 0
 voters_summary = dict()
 
 # Open the budget_data.csv file using csv.DictReader
-with open('election_data.csv', 'r') as csvfile:
+with open(filename, 'r') as csvfile:
 
     election_reader = csv.reader(csvfile, delimiter=',')
 
@@ -55,8 +59,11 @@ for k, v in voters_summary.items():
 # print the  messages
 final_winner_msg = 'Winner: ' + final_winner
 
+# Get the filename to write
+filename = os.path.join(os.path.dirname(__file__), 'election_summary.txt')
+
 # Open a file to write the Election Summary
-election_summary_writer = open('election_summary.txt', 'w', newline="\n")
+election_summary_writer = open(filename, 'w', newline="\n")
 
 # Write the summary to the text file
 election_summary_writer.write(title + '\n')
